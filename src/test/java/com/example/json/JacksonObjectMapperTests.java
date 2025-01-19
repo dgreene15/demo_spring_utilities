@@ -9,30 +9,39 @@ import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class JacksonObjectMapperTests {
     @Test
-    @Disabled
-    void testWriteValueAsString() throws JsonProcessingException {
+    void writeValueAsString() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         Car car = new Car("yellow", "truck");
-        System.out.println("String: " + objectMapper.writeValueAsString(car));
-        System.out.println("Pretty String: " + objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(car));
+
+        assertThat(objectMapper.writeValueAsString(car)).isEqualTo("{\"color\":\"yellow\",\"type\":\"truck\"}");
+        assertThat(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(car)).isEqualTo("{\n  \"color\" : \"yellow\",\n  \"type\" : \"truck\"\n}");
     }
 
     @Test
-    @Disabled
-    void testReadJson() throws JsonProcessingException {
+    void readValueJson() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = "{\"color\":\"yellow\",\"type\":\"truck\"}";
         Car car = objectMapper.readValue(json, Car.class);
-        System.out.println(car.getColor() + " : " + car.getType());
 
+        assertThat(car.getColor()).isEqualTo("yellow");
+    }
+
+    @Test
+    void readTreeJson() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = "{\"color\":\"yellow\",\"type\":\"truck\"}";
         JsonNode rootNode = objectMapper.readTree(json);
         String color = rootNode.get("color").asText();
         String type = rootNode.get("type").asText();
-        System.out.println(color + " : " + type);
 
+        assertThat(color).isEqualTo("yellow");
+        assertThat(type).isEqualTo("truck");
     }
+
 }
 
 @Data
