@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @Slf4j
 public class ApacheCollectionUtilsTests {
-
-
     /*
     * CollectionUtils.isEmpty
     * Safe was to check if collection is empty or null
@@ -22,8 +22,8 @@ public class ApacheCollectionUtilsTests {
         List<String> list3 = new ArrayList<>();
         list3.add("test");
 
-        log.info("list (empty) Status: " + CollectionUtils.isEmpty(list));
-        log.info("list2 (null) Status: " + CollectionUtils.isEmpty(list2));
-        log.info("list3 (has one element) Status: " + CollectionUtils.isEmpty(list3));
+        assertThat(CollectionUtils.isEmpty(list)).isTrue();
+        assertThat(CollectionUtils.isEmpty(list2)).isTrue();
+        assertThat(CollectionUtils.isEmpty(list3)).isFalse();
     }
 }

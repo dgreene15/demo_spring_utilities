@@ -4,6 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * MapStruct
  * Tool for object to object mapping
@@ -18,12 +20,10 @@ public class MapStructTests {
 
         Target target = SourceTargetMapper.INSTANCE.sourceToTarget(source);
 
-        System.out.println("Full Name: " + target.getFullName());
-        System.out.println("Years: " + target.getYears());
+        assertThat(target.getFullName()).isEqualTo("John Doe");
+        assertThat(target.getYears()).isEqualTo(30);
     }
-
 }
-
 
 @Mapper
 interface SourceTargetMapper {

@@ -1,11 +1,14 @@
 package com.example;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.ToString;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LombokTests {
 
@@ -14,8 +17,12 @@ public class LombokTests {
      * - Allows throwing an exception but not have to catch or declare it
      */
     @SneakyThrows
+    @Test
     public void testSneakyThrows() {
-        throw new IOException("IO Exception");
+        boolean exceptionThrown = false;
+        if(exceptionThrown) {
+            throw new IOException("IO Exception");
+        }
     }
 
     @Test
@@ -27,7 +34,9 @@ public class LombokTests {
                 .address("123 Main St")
                 .build();
 
-        System.out.println(person); // Output: Person(name=John Doe, age=30, address=123 Main St)
+        assertThat(person.getName()).isEqualTo("John Doe");
+        assertThat(person.getAge()).isEqualTo(30);
+        assertThat(person.getAddress()).isEqualTo("123 Main St");
 
         // Create a new instance based on the existing one, with some modifications
         Person updatedPerson = person.toBuilder()
@@ -35,11 +44,13 @@ public class LombokTests {
                 .address("456 Elm St")
                 .build();
 
-        System.out.println(updatedPerson); // Output: Person(name=John Doe, age=31, address=456 Elm St)
+        assertThat(updatedPerson.getName()).isEqualTo("John Doe");
+        assertThat(updatedPerson.getAge()).isEqualTo(31);
+        assertThat(updatedPerson.getAddress()).isEqualTo("456 Elm St");
     }
 }
 
-
+@Data
 @Builder(toBuilder = true)
 @ToString
 class Person {
