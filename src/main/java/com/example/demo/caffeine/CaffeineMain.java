@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// todo: move this to different repo.
 @SpringBootApplication
 public class CaffeineMain implements CommandLineRunner {
 	
