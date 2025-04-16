@@ -5,12 +5,28 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class ApacheCollectionUtilsTests {
+
+    /*
+     * CollectionUtils.emptyIfNull
+     * Returns an immutable empty collection if the input collection is null.
+     *  Else returns original collection.
+     */
+    @Test
+    void emptyIfNull() {
+        List<String> list = null;
+        Collection<String> emptyList = CollectionUtils.emptyIfNull(list);
+
+        assertThat(emptyList).isNotNull();
+        assertThat(emptyList).isEmpty();
+    }
+
     /*
     * CollectionUtils.isEmpty
     * Safe was to check if collection is empty or null
