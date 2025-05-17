@@ -1,19 +1,13 @@
 package resilience4j;
 
-
-import com.example.demo.resilience4j.ExternalServiceClient;
 import com.example.demo.resilience4j.MyServiceUsingCircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.example.demo.DemoApplication;
-import org.springframework.boot.test.mock.mockito.SpyBean;
-import org.springframework.stereotype.Service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(classes = DemoApplication.class)
 public class CircuitBreakerTests {

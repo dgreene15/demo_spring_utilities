@@ -106,6 +106,12 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
+		<!-- Added for Sprint Retry -->
+		<dependency>
+			<groupId>org.springframework.retry</groupId>
+			<artifactId>spring-retry</artifactId>
+		</dependency>
+
 		<!-- FreeMarker Template Engine -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
