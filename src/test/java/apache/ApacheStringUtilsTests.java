@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ApacheStringUtilsTests {
 
     /**
@@ -16,8 +18,8 @@ public class ApacheStringUtilsTests {
         String str2 = "test";
         String str3 = null;
 
-        Assertions.assertThat(StringUtils.equals(str1, str2)).isTrue();
-        Assertions.assertThat(StringUtils.equals(str1, str3)).isFalse();
+        assertThat(StringUtils.equals(str1, str2)).isTrue();
+        assertThat(StringUtils.equals(str1, str3)).isFalse();
     }
 
     /**
@@ -28,8 +30,19 @@ public class ApacheStringUtilsTests {
     void testNullStringDefaultToEmptyString() {
         String fieldName = null;
         String updatedField = StringUtils.defaultIfEmpty(fieldName, "");
-        Assertions.assertThat(updatedField)
+        assertThat(updatedField)
                 .isNotNull()
                 .isEmpty();
+    }
+
+    @Test
+    void testDefaultString() {
+        String actual = StringUtils.defaultString(null);
+        String actualWithDefault = StringUtils.defaultString(null, "default");
+        String actualWithValue = StringUtils.defaultString("hi", "default");
+
+        assertThat(actual).isEqualTo("");
+        assertThat(actualWithDefault).isEqualTo("default");
+        assertThat(actualWithValue).isEqualTo("hi");
     }
 }

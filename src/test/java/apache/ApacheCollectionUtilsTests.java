@@ -44,4 +44,17 @@ public class ApacheCollectionUtilsTests {
         assertThat(CollectionUtils.isEmpty(list2)).isTrue();
         assertThat(CollectionUtils.isEmpty(list3)).isFalse();
     }
+
+    @Test
+    void testIsNotEmpty() {
+        List<String> list = new ArrayList<>();
+        List<String> list2 = null;
+        List<String> list3 = new ArrayList<>();
+        list3.add("test");
+
+        assertThat(CollectionUtils.isNotEmpty(list)).isFalse();
+        assertThat(CollectionUtils.isNotEmpty(list2)).isFalse();
+        assertThat(CollectionUtils.isNotEmpty(list3)).isTrue();
+    }
+
 }
